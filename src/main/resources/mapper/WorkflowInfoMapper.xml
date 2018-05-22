@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mainiway.dao.IWorkflowInfoDao">
+    <resultMap id="BaseResultMap" type="com.mainiway.bean.po.WorkflowInfo">
+        <id column="id" property="id" jdbcType="CHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="vendor" property="vendor" jdbcType="VARCHAR" />
+        <result column="audit" property="audit" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="BIT" />
+    </resultMap>
+    
+  <!-- 子查询条件 -->
+    <sql id="Example_Where_Clause">
+          <where>
+             <if test="id != null">
+                and id= #{id,jdbcType=CHAR}
+             </if>
+             <if test="name != null">
+                and name= #{name,jdbcType=VARCHAR}
+             </if>
+             <if test="vendor != null">
+                and vendor= #{vendor,jdbcType=VARCHAR}
+             </if>
+             <if test="audit != null">
+                and audit= #{audit,jdbcType=VARCHAR}
+             </if>
+             <if test="description != null">
+                and description= #{description,jdbcType=VARCHAR}
+             </if>
+             <if test="remarks != null">
+                and remarks= #{remarks,jdbcType=VARCHAR}
+             </if>
+             <if test="createBy != null">
+                and create_by= #{createBy,jdbcType=VARCHAR}
+             </if>
+             <if test="createDate != null">
+                and create_date= #{createDate,jdbcType=TIMESTAMP}
+             </if>
+             <if test="updateBy != null">
+                and update_by= #{updateBy,jdbcType=VARCHAR}
+             </if>
+             <if test="updateDate != null">
+                and update_date= #{updateDate,jdbcType=TIMESTAMP}
+             </if>
+             <if test="delFlag != null">
+                and del_flag= #{delFlag,jdbcType=BIT}
+             </if>
+                <!-- and a.status!='d' -->
+        </where>
+    </sql>
+     
+    <!--把需要查询的字段写成公用列-->
+    <sql id="Base_Column_List">
+        id,
+        name,
+        vendor,
+        audit,
+        description,
+        remarks,
+        create_by,
+        create_date,
+        update_by,
+        update_date,
+        del_flag
+    </sql>
+    
+     <select id="selectByRecord" parameterType="com.mainiway.bean.po.WorkflowInfo"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM workflow_info t
+		<include refid="Example_Where_Clause" />
+	</select>
+    
+    
+    <select id="selectPageByExample" parameterType="com.mainiway.bean.po.WorkflowInfo"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM workflow_info t
+		<include refid="Example_Where_Clause" />
+		ORDER BY update_date DESC
+		LIMIT #{pageStart},#{pageSize}
+	</select>
+
+	<select id="selectById" parameterType="com.mainiway.bean.po.WorkflowInfo"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM workflow_info t
+		WHERE id = #{id,jdbcType=VARCHAR} and del_flag=false
+	</select>
+
+
+</mapper> 
