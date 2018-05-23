@@ -1,8 +1,9 @@
 package com.mainiway.service.impl.user;
 
+import com.mainiway.bean.po.UserAccount;
 import com.mainiway.bean.po.UserTransactionRecord;
 import com.mainiway.dao.IUserInfoDao;
-import com.mainiway.exception.TransferException;
+import com.mainiway.enums.TransferEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo> implements IUserInfoService {
     @Autowired
     private IUserInfoDao userInfoDao;
-
+    @Autowired
+    private UserAccountServiceImpl userAccountServiceImpl;
     @Override
     public UserInfo getUserInfoByUserName(String userName) {
         return userInfoDao.getUserInfoByUserName(userName);
@@ -30,13 +32,20 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo> implements IU
      * @Date: 14:13 2018/5/22
      */
     @Transactional
-    public synchronized Boolean transferAccount(UserTransactionRecord userTransactionRecord){
-       //判断是否存在该用户，并且余额足够
+    public synchronized TransferEnum transferAccount(UserTransactionRecord userTransactionRecord){
+        //判断是否存在该用户，并且余额足够
         UserInfo fromUser =  super.selectById(userTransactionRecord.getFromUserId());
         UserInfo ToUser =  super.selectById(userTransactionRecord.getToUserId());
-        if(null != fromUser ){
-//            new TransferException();
+        UserAccount account = userAccountServiceImpl.getAccountByUserId(userTransactionRecord.getFromUserId());
+        //如果余额不足，则提示余额不足
+        if(null == account || null == account.getAmount() || userTransactionRecord.getAmt().compareTo(account.getAmount()) == -1){
+            return TransferEnum.ACCOUT_BALANCE_LESS_FAIL;
         }
-        return true ;
+        //todo  执行证联支付接口
+        //todo  扣减付款方金额
+        //todo  增加收款方金额
+        //todo  增加交易流水
+
+        return TransferEnum.SUCCESS ;
     }
 }
