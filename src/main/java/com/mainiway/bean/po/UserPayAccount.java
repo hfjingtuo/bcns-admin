@@ -63,5 +63,6 @@ public class UserPayAccount extends BaseEntry {
     private String cardNo ;
     // 支付密码（银行代码为0001时不允许为空，其他可空） 最大长度32位 可为空
     private String payPassWord ;
-
+    //手机号码
+    private String mobile ;
 }

@@ -18,5 +18,7 @@ public class UserAccount extends BaseEntry {
 
     private String userId;
     private BigDecimal amount;
+    //支付密码
+    private String payPassword;
 
 }
