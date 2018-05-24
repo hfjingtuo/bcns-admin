@@ -1,9 +1,14 @@
 package com.mainiway.service.impl.user;
 
+import com.alibaba.fastjson.JSONObject;
+import com.gpm.pay.entity.zlian.MarginSmsDTO;
+import com.gpm.pay.enums.zlian.SmsTradeTypeEnum;
 import com.mainiway.bean.po.UserAccount;
 import com.mainiway.bean.po.UserTransactionRecord;
 import com.mainiway.dao.IUserInfoDao;
 import com.mainiway.enums.TransferEnum;
+import com.mainiway.utils.HttpUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +17,8 @@ import com.mainiway.common.base.BaseServiceImpl;
 import com.mainiway.service.IUserInfoService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+
 
 @Service
 public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo> implements IUserInfoService {
@@ -19,6 +26,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo> implements IU
     private IUserInfoDao userInfoDao;
     @Autowired
     private UserAccountServiceImpl userAccountServiceImpl;
+
     @Override
     public UserInfo getUserInfoByUserName(String userName) {
         return userInfoDao.getUserInfoByUserName(userName);
@@ -45,7 +53,8 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo> implements IU
         //todo  扣减付款方金额
         //todo  增加收款方金额
         //todo  增加交易流水
-
         return TransferEnum.SUCCESS ;
     }
+
+
 }
