@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mainiway.dao.IUserPayAccountDao">
+    <resultMap id="BaseResultMap" type="com.mainiway.bean.po.UserPayAccount">
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="user_id" property="userId" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="CHAR" />
+        <result column="pay_user_Id" property="payUserId" jdbcType="VARCHAR" />
+        <result column="user_name_text" property="userNameText" jdbcType="VARCHAR" />
+        <result column="cust_type" property="custType" jdbcType="CHAR" />
+        <result column="cert_type" property="certType" jdbcType="VARCHAR" />
+        <result column="cert_id" property="certId" jdbcType="VARCHAR" />
+        <result column="org_id" property="orgId" jdbcType="VARCHAR" />
+        <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+        <result column="bank_province_code" property="bankProvinceCode" jdbcType="VARCHAR" />
+        <result column="bank_region_code" property="bankRegionCode" jdbcType="VARCHAR" />
+        <result column="card_No" property="cardNo" jdbcType="VARCHAR" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- 子查询条件 -->
+    <sql id="Example_Where_Clause">
+        <where>
+            <if test="id != null">
+                and id= #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="userId != null">
+                and user_id= #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null">
+                and `type`= #{type,jdbcType=CHAR}
+            </if>
+            <if test="payUserId != null">
+                and pay_user_Id= #{payUserId,jdbcType=VARCHAR}
+            </if>
+            <if test="userNameText != null">
+                and user_name_text= #{userNameText,jdbcType=VARCHAR}
+            </if>
+            <if test="custType != null">
+                and cust_type= #{custType,jdbcType=CHAR}
+            </if>
+            <if test="certType != null">
+            and cert_type= #{certType,jdbcType=VARCHAR}
+        </if>
+            <if test="certId != null">
+                and cert_id= #{certId,jdbcType=VARCHAR}
+            </if>
+            <if test="orgId != null">
+                and org_id= #{orgId,jdbcType=VARCHAR}
+            </if>
+            <if test="bankCode != null">
+                and bank_code= #{bankCode,jdbcType=VARCHAR}
+            </if>
+            <if test="bankProvinceCode != null">
+                and bank_province_code= #{bankProvinceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="bankRegionCode != null">
+                and bank_region_code= #{bankRegionCode,jdbcType=VARCHAR}
+            </if>
+            <if test="cardNo != null">
+                and card_No= #{cardNo,jdbcType=VARCHAR}
+            </if>
+
+            <if test="remarks != null">
+                and remarks= #{remarks,jdbcType=VARCHAR}
+            </if>
+            <if test="createBy != null">
+                and create_by= #{createBy,jdbcType=VARCHAR}
+            </if>
+            <if test="createDate != null">
+                and create_date= #{createDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateBy != null">
+                and update_by= #{updateBy,jdbcType=VARCHAR}
+            </if>
+            <if test="updateDate != null">
+                and update_date= #{updateDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="delFlag != null">
+                and del_flag= #{delFlag,jdbcType=CHAR}
+            </if>
+            <if test="mobile != null">
+                and mobile= #{mobile,jdbcType=CHAR}
+            </if>
+            <!-- and a.status!='d' -->
+        </where>
+    </sql>
+
+    <!--把需要查询的字段写成公用列-->
+    <sql id="Base_Column_List">
+        id,
+        user_id,
+        `type`,
+        pay_user_Id,
+        user_name_text,
+        cust_type,
+        cert_type,
+        org_id,
+        bank_code,
+        bank_province_code,
+        bank_region_code,
+        card_No,
+        mobile
+    </sql>
+
+    <select id="getUserPayAccountByUserId" parameterType="com.mainiway.bean.po.UserPayAccount"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user_pay_account
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>
