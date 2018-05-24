@@ -2,6 +2,7 @@ package com.mainiway.common.base;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.validation.BindingResult;
@@ -61,5 +62,19 @@ public class BaseController {
 		responseResult.setCode("500");
 
 		return responseResult;
+	}
+
+
+	protected ResponseResult getPayResponseResult(Map map) {
+		Map result = (Map)map.get("data");
+		if(result !=null && result.get("respCode").toString().equals("RC00")){
+			return getResponseResult("", IStatusMessage.ResultStatus.SUCCESS);
+		}else{
+			if(result !=null && result.get("respDesc") !=null ){
+				return getResponseResult(result.get("respDesc"), IStatusMessage.ResultStatus.ERROR);
+			}else{
+				return getResponseResult(map.get("msg"), IStatusMessage.ResultStatus.ERROR);
+			}
+		}
 	}
 }
