@@ -1,22 +1,22 @@
 package com.mainiway.controller.user;
 
 import java.util.List;
+import java.util.Map;
 
+import com.gpm.pay.entity.zlian.MarginSmsDTO;
 import com.mainiway.bean.po.UserTransactionRecord;
 import com.mainiway.service.impl.user.UserInfoServiceImpl;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.mainiway.bean.dto.ResponseResult;
 import com.mainiway.bean.po.UserInfo;
 import com.mainiway.common.base.BaseController;
 import com.mainiway.consts.IStatusMessage;
 import com.mainiway.service.IUserInfoService;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 //@RestController
 @RequestMapping("/userInfo")
@@ -91,5 +91,8 @@ public class UserController extends BaseController {
 		userInfoServiceImpl.transferAccount(userTransactionRecord);
 		return getResponseResult("", IStatusMessage.ResultStatus.SUCCESS);
 	}
+
+
+
 	
 }
