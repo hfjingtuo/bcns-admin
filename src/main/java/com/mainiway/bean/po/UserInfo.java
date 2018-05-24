@@ -13,9 +13,4 @@ public class UserInfo extends BaseEntry {
 
 	private String userName;
 	private String password;
-	private String mobile;
-	private String email;
-	
-
-	
 }

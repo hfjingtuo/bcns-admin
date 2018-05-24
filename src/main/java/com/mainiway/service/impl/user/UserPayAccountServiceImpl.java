@@ -9,6 +9,7 @@ import com.gpm.pay.utils.IdUtil;
 import com.mainiway.bean.po.UserAccount;
 import com.mainiway.bean.po.UserPayAccount;
 import com.mainiway.common.base.BaseServiceImpl;
+import com.mainiway.common.constants.Global;
 import com.mainiway.consts.IStatusMessage;
 import com.mainiway.dao.IUserAccountDao;
 import com.mainiway.dao.IUserPayAccountDao;
@@ -51,7 +52,7 @@ public class UserPayAccountServiceImpl extends BaseServiceImpl<UserPayAccount> i
     public Map marginRegisterSms(MarginSmsDTO marginSmsDTO){
         marginSmsDTO.setTradeType(SmsTradeTypeEnum.PROTOCOL_REGISTRATION.getCode());
         String marginSmsDTOStr = JSONObject.toJSON(marginSmsDTO).toString();
-        String url = "http://localhost:8080/gpm-pay/zlpay/marginSms" ;
+        String url = Global.PAY_MARGIN_SMS_URL ;
         return HttpUtil.sendMsg(url,marginSmsDTOStr);
     }
 
@@ -61,12 +62,11 @@ public class UserPayAccountServiceImpl extends BaseServiceImpl<UserPayAccount> i
         marginRegisterDTO.setResv("");
         marginRegisterDTO.setFundSeqId(IdUtil.randomBase62(32));
         String marginSmsDTOStr = JSONObject.toJSON(marginRegisterDTO).toString();
-        String url = "http://localhost:8080/gpm-pay/zlpay/marginRegister" ;
+        String url = Global.PAY_MARGIN_REGISTER_URL ;
         Map map = HttpUtil.sendMsg(url,marginSmsDTOStr);
         Map result = (Map)map.get("data");
         if(result !=null && result.get("respCode").toString().equals("RC00")){
             Common208Result common208Result = (Common208Result)result.get("data");
-            common208Result.setUserId("1");
             //开户成功，将结果写入到数据库中
             UserPayAccount userPayAccount = new UserPayAccount();
             userPayAccount.setUserId(userId);

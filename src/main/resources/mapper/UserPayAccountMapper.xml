@@ -101,6 +101,7 @@
         user_name_text,
         cust_type,
         cert_type,
+        cert_id,
         org_id,
         bank_code,
         bank_province_code,
