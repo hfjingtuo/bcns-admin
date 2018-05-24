@@ -3,7 +3,6 @@ package com.mainiway.utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.gpm.pay.entity.zlian.MarginSmsDTO;
-import com.mainiway.bean.dto.HttpRequestParam;
 import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,7 +77,7 @@ public class HttpUtil {
      * @Date: 18:04 2018/5/11
      */
     @SuppressWarnings("unused")
-    private static Map<String,String> sendMsg(String url, String jsonStr){
+    public static Map<String,String> sendMsg(String url, String jsonStr){
         Map<String,String> result = new HashMap<>();
         try {
             HttpUtil http = new HttpUtil();

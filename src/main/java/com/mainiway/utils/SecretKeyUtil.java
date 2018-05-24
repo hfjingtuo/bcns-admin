@@ -13,7 +13,7 @@ public class SecretKeyUtil {
         return MD5.toMD5(userName + "|" + password );
     };
 
-    public static String payPassword(String userName , String password ){
-        return MD5.toMD5(userName + "|" + password );
+    public static String payPassword(String password ){
+        return MD5.toMD5( password );
     };
 }
