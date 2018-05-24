@@ -2,6 +2,8 @@ package com.gpm.pay.entity.zlian;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @Author:张立华
  * @Description:获取短信验证码 2305
@@ -21,11 +23,13 @@ public class MarginSmsDTO extends ZlBaseDTO<MarginSmsDTO>{
     private String merchantSeqId ;
     // 短信验证业务类型 最大长度2位 不可为空
     private String tradeType ;
-    // 用户在证联支付平台里的客户号 最大长度20位 不可为空
+    // 用户在证联支付平台里的客户号 最大长度20位 可为空
     private String userId ;
     // 客户的姓名 最大长度120位 不可为空
+    @NotNull
     private String userNameText ;
     // 客户手机号 最大长度32位 不可为空
+    @NotNull
     private String mobile ;
     // 证件类型 最大长度2位 不可为空
     private String certType ;
