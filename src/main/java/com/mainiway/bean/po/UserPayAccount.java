@@ -3,6 +3,8 @@ package com.mainiway.bean.po;
 import com.mainiway.common.base.BaseEntry;
 import lombok.Data;
 
+import javax.validation.constraints.Max;
+
 /**
  * @Author:张立华
  * @Description: 用户支付平台账号
@@ -60,9 +62,9 @@ public class UserPayAccount extends BaseEntry {
     /**
      * 银行卡号 最大长度32位 不可为空
      */
+    @Max(32)
     private String cardNo ;
-    // 支付密码（银行代码为0001时不允许为空，其他可空） 最大长度32位 可为空
-    private String payPassWord ;
     //手机号码
+    @Max(11)
     private String mobile ;
 }
