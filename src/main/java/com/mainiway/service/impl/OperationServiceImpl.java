@@ -1,8 +1,13 @@
 package com.mainiway.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.mainiway.bean.po.*;
+import com.mainiway.bean.vo.Message;
+import com.mainiway.bean.vo.OperationVo;
+import com.mainiway.bean.vo.PageBase;
+import com.mainiway.bean.vo.ResultMap;
+import com.mainiway.common.base.BaseServiceImpl;
+import com.mainiway.service.*;
+import com.mainiway.utils.IdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -11,22 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import com.mainiway.bean.po.LoansInfo;
-import com.mainiway.bean.po.Operation;
-import com.mainiway.bean.po.Service;
-import com.mainiway.bean.po.WorkflowInfo;
-import com.mainiway.bean.po.WorkflowOrder;
-import com.mainiway.bean.vo.Message;
-import com.mainiway.bean.vo.OperationVo;
-import com.mainiway.bean.vo.PageBase;
-import com.mainiway.bean.vo.ResultMap;
-import com.mainiway.common.base.BaseServiceImpl;
-import com.mainiway.common.util.code.IdGenerator;
-import com.mainiway.service.ILoansInfoService;
-import com.mainiway.service.IOperationService;
-import com.mainiway.service.IService;
-import com.mainiway.service.IWorkflowInfoService;
-import com.mainiway.service.IWorkflowOrderService;
+import java.util.ArrayList;
+import java.util.List;
 
 @org.springframework.stereotype.Service
 public class OperationServiceImpl extends BaseServiceImpl<Operation> implements IOperationService{

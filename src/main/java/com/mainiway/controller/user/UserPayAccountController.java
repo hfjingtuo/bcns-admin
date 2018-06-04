@@ -4,22 +4,16 @@ import com.gpm.pay.entity.zlian.MarginRegisterDTO;
 import com.gpm.pay.entity.zlian.MarginSmsDTO;
 import com.gpm.pay.utils.IdUtil;
 import com.mainiway.bean.dto.ResponseResult;
-import com.mainiway.bean.po.UserInfo;
 import com.mainiway.bean.po.UserPayAccount;
-import com.mainiway.bean.vo.UserPayAccountVo;
 import com.mainiway.common.base.BaseController;
-import com.mainiway.consts.IStatusMessage;
-import com.mainiway.service.IUserPayAccountService;
+import com.mainiway.common.base.IStatusMessage;
 
 import com.mainiway.service.impl.user.UserPayAccountServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Administrator on 2018-05-22.

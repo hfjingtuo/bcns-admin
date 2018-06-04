@@ -1,4 +1,4 @@
-package com.mainiway.startup;
+package com.mainiway.swagger;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

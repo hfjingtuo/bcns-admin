@@ -16,7 +16,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mainiway.bean.dto.ResponseResult;
 import com.mainiway.common.constants.Message.Result;
-import com.mainiway.consts.IStatusMessage.ResultStatus;
+import com.mainiway.common.base.IStatusMessage.ResultStatus;
 
 /*****************************************************************************
  *模块名 : TODO RestClient

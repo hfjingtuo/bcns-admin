@@ -3,12 +3,11 @@ package com.mainiway.controller.user;
 import com.mainiway.bean.dto.ResponseResult;
 import com.mainiway.bean.po.UserAccount;
 import com.mainiway.common.base.BaseController;
-import com.mainiway.consts.IStatusMessage;
+import com.mainiway.common.base.IStatusMessage;
 import com.mainiway.service.IUserAccountService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -4,9 +4,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Author: zhangxin
+ * Date: Created in 2018/05/25 23:14
+ * Copyright: Copyright (c) 2018
+ * Description： 自定义返回结果
+ */
 public class ResponseResult implements Serializable {
 	private static final long serialVersionUID = 7285065610386199394L;
+	/**
+	 * 返回码
+	 */
 	private String code;
+	/**
+	 * 返回结果描述
+	 */
 	private List<String> messages;
 	private Object obj;
 

@@ -10,7 +10,6 @@ import com.mainiway.bean.po.UserAccount;
 import com.mainiway.bean.po.UserPayAccount;
 import com.mainiway.common.base.BaseServiceImpl;
 import com.mainiway.common.constants.Global;
-import com.mainiway.consts.IStatusMessage;
 import com.mainiway.dao.IUserAccountDao;
 import com.mainiway.dao.IUserPayAccountDao;
 import com.mainiway.service.IUserPayAccountService;

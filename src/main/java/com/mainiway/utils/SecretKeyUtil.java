@@ -1,7 +1,5 @@
 package com.mainiway.utils;
 
-import com.mainiway.common.util.code.MD5;
-
 /**
  * @Author:张立华
  * @Description:
@@ -10,10 +8,10 @@ import com.mainiway.common.util.code.MD5;
  */
 public class SecretKeyUtil {
     public static String token(String userName , String password ){
-        return MD5.toMD5(userName + "|" + password );
+        return MD5Util.toMD5(userName + "|" + password );
     };
 
     public static String payPassword(String password ){
-        return MD5.toMD5( password );
+        return MD5Util.toMD5( password );
     };
 }

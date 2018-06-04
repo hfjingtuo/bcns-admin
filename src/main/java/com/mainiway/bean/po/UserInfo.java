@@ -1,7 +1,5 @@
 package com.mainiway.bean.po;
 
-import javax.persistence.Table;
-
 import com.mainiway.common.base.BaseEntry;
 import lombok.Data;
 
@@ -13,4 +11,6 @@ public class UserInfo extends BaseEntry {
 
 	private String userName;
 	private String password;
+	private String phone;
+	private String email;
 }

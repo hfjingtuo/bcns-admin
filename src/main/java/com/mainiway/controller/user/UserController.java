@@ -1,12 +1,9 @@
 package com.mainiway.controller.user;
 
 import java.util.List;
-import java.util.Map;
 
-import com.gpm.pay.entity.zlian.MarginSmsDTO;
 import com.mainiway.bean.po.UserTransactionRecord;
 import com.mainiway.service.impl.user.UserInfoServiceImpl;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -15,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.mainiway.bean.dto.ResponseResult;
 import com.mainiway.bean.po.UserInfo;
 import com.mainiway.common.base.BaseController;
-import com.mainiway.consts.IStatusMessage;
+import com.mainiway.common.base.IStatusMessage;
 import com.mainiway.service.IUserInfoService;
 
 //@RestController

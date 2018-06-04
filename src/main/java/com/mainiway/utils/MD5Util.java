@@ -1,10 +1,10 @@
-package com.mainiway.common.util.code;
+package com.mainiway.utils;
 
 /************************************************
- MD5 算法的Java Bean
+ MD5Util 算法的Java Bean
  * md5 类实现了RSA Data Security, Inc.在提交给IETF 的RFC1321中的MD5 message-digest 算法。
  *************************************************/
-public class MD5 {
+public class MD5Util {
     /*
      * 下面这些S11-S44实际上是一个4*4的矩阵，在原始的C实现中是用#define 实现的， 这里把它们实现成为static
      * final是表示了只读，且能在同一个进程空间内的多个Instance间共享
@@ -65,7 +65,7 @@ public class MD5 {
     }
 
     // 这是MD5这个类的标准构造函数，JavaBean要求有一个public的并且没有参数的构造函数
-    public MD5() {
+    public MD5Util() {
         md5Init();
         return;
     }
@@ -343,10 +343,10 @@ public class MD5 {
      */
     public static String toMD5(String source) {
         /*
-         * MD5 md5 = new MD5(); return md5.getMD5ofStr(source);
+         * MD5Util md5 = new MD5Util(); return md5.getMD5ofStr(source);
          */
         String str = "";
-        MD5 md5 = new MD5();
+        MD5Util md5 = new MD5Util();
         String firstMd5 = md5.getMD5ofStr(source);// 第一次Md5加密
         String first16 = firstMd5.substring(0, 16);
         String secondMd5 = md5.getMD5ofStr(first16);// 前16位再加密
@@ -362,22 +362,11 @@ public class MD5 {
      */
     public static String strongMd5(String source) {
         String str = "";
-        MD5 md5 = new MD5();
+        MD5Util md5 = new MD5Util();
         String firstMd5 = md5.getMD5ofStr(source);// 第一次Md5加密
         String first16 = firstMd5.substring(0, 16);
         String secondMd5 = md5.getMD5ofStr(first16);// 前16位再加密
         str = secondMd5.substring(1, secondMd5.length() - 1);
         return str;
-    }
-
-    /**
-     * 测试方法
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        String password = toMD5("1");
-        System.out.println("==============" + password + "----"
-                + password.length());
     }
 }

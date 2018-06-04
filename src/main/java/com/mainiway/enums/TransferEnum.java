@@ -1,6 +1,6 @@
 package com.mainiway.enums;
 
-import com.mainiway.consts.IStatusMessage;
+import com.mainiway.common.base.IStatusMessage;
 import lombok.Getter;
 
 /**

@@ -1,23 +1,18 @@
 package com.mainiway.service.impl.user;
 
-import com.alibaba.fastjson.JSONObject;
-import com.gpm.pay.entity.zlian.MarginSmsDTO;
-import com.gpm.pay.enums.zlian.SmsTradeTypeEnum;
 import com.mainiway.bean.po.UserAccount;
+import com.mainiway.bean.po.UserInfo;
 import com.mainiway.bean.po.UserTransactionRecord;
+import com.mainiway.common.base.BaseServiceImpl;
 import com.mainiway.dao.IUserInfoDao;
 import com.mainiway.enums.TransferEnum;
-import com.mainiway.utils.HttpUtil;
-import org.apache.commons.lang3.StringUtils;
+import com.mainiway.service.IUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.mainiway.bean.po.UserInfo;
-import com.mainiway.common.base.BaseServiceImpl;
-import com.mainiway.service.IUserInfoService;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Map;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 @Service
@@ -56,5 +51,30 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo> implements IU
         return TransferEnum.SUCCESS ;
     }
 
+    private String passwordToHash(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            digest.update(password.getBytes());
+            byte[] src = digest.digest();
+            StringBuilder stringBuilder = new StringBuilder();
+            // 字节数组转16进制字符串
+            // https://my.oschina.net/u/347386/blog/182717
+            for (byte aSrc : src) {
+                String s = Integer.toHexString(aSrc & 0xFF);
+                if (s.length() < 2) {
+                    stringBuilder.append('0');
+                }
+                stringBuilder.append(s);
+            }
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException ignore) {
+        }
+        return null;
+    }
+
+    public boolean comparePassword(UserInfo user, UserInfo userInDataBase) {
+        return passwordToHash(user.getPassword())      // 将用户提交的密码转换为 hash
+                .equals(userInDataBase.getPassword()); // 数据库中的 password 已经是 hash，不用转换
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.mainiway.common.util.code;
+package com.mainiway.utils;
 
 /**
  * ***************************************************************************
